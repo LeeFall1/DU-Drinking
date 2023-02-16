@@ -1,0 +1,60 @@
+<style>
+    :root {
+        --aspect-ratio: calc(854 / 480);
+        --fps: 15.0;
+        --columns: 8;
+        --rows: 16;
+    }
+
+    img {
+        width: calc(100vw * var(--columns));
+        height: calc(100vw * var(--rows) / var(--aspect-ratio));
+    }
+    
+    .clip {
+        height: calc(100vw / var(--aspect-ratio));
+        width: 100vw;
+        overflow: hidden;
+    }
+    
+    .center {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .scan-x {
+        animation: scan-x calc(1s * var(--columns) / var(--fps)) steps(var(--columns)) infinite;
+    }
+
+    @keyframes scan-x {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+
+    .scan-y {
+        animation: scan-y calc(1s * var(--columns) * var(--rows) / var(--fps)) steps(var(--rows)) infinite;
+    }
+
+    @keyframes scan-y {
+        0% {
+            transform: translateY(0);
+        }
+        100% {
+            transform: translateY(-100%);
+        }
+    }
+</style>
+
+<div class="center">
+    <div class="clip">
+        <div class="scan-y">
+            <img class="scan-x" src="<!-- INSERT IMAGE URL HERE -->"/>
+        </div>
+    </div>
+</div>
